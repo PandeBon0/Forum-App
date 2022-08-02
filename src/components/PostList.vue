@@ -27,19 +27,17 @@
           </p>
         </div>
       </div>
-      <div class="post-date text-faded">
+      <div class="post-date text-faded" :title="humanFriendlyDate(post.publishedAt)">
         {{ diffForHumans(post.publishedAt) }}
+        <AppDate :timestamp="post.publishedAt"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import sourceData from '@/data.json';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-
-dayjs.extend(relativeTime);
+import sourceData from '@/data.json'; 
+import AppDate from '@/components/AppDate.vue';
 
 export default {
   data() {
@@ -56,19 +54,17 @@ export default {
   },
         
   methods: {
-    postById(postId) {
-      return this.posts.find(p => p.id === postId);
-    },
-
+    // postById(postId) {
+    //   return this.posts.find(p => p.id === postId);
+    // },
     userById(userId) {
       return this.users.find(p => p.id === userId);
-    },
-    
-    diffForHumans(timeStamp) {
-      return dayjs.unix(timeStamp).fromNow();
-    },
+    },   
   },
 
+  components: {
+    AppDate,
+  },
 }
 </script>                                                                                                                                                                                                           
 

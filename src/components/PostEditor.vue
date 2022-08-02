@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="col-full">
     <form @submit.prevent="save">
       <textarea 
-        v-model="newPosText" 
+        v-model="text" 
         name="" 
         id="" 
         cols="30" 
-        rows="10">
-      </textarea>
-      <button class="btn-blue">Submit post</button>
+        rows="10"
+        class="form-input"  
+      />
+      <div class="form-actions">
+        <button class="btn-blue">Submit post</button>
+      </div> 
     </form>
   </div>
 </template>
@@ -18,7 +21,7 @@
 export default {
   data() {
     return {
-      Text: ''
+      text: ''
     };
   },
 
@@ -27,14 +30,12 @@ export default {
       const postId = 'qqqq' + Math.random();
       const post = {
         id: postId,
-        text: this.newPosText,
+        text: this.text,
         publishedAt: Math.floor(Date.now() / 1000),
         userId: 'jUjmgCurRRdzayqbRMO7aTG9X1G2'
       };
       this.$emit('save', { post });
-      //this.posts.push(post)
-      //this.thread.posts.push(postId)
-      this.Text = '';
+      this.text = '';
     },
   },
 }

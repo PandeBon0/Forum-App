@@ -22,9 +22,9 @@
           <p class="text-faded text-xsmall">
             By 
             <a href="#">
-              {{userById(thread.user)}}
+              {{userById(thread.userId).name}}
             </a>, 
-            {{thread.publishedAt}}.
+            <AppDate :timestamp="thread.publishedAt"/>
           </p>
         </div>
         <div class="activity">
@@ -43,7 +43,7 @@
               </a>
             </p>
             <p class="text-xsmall text-faded">
-              {{thread.publishedAt}}
+              <AppDate :timestamp="thread.publishedAt"/>
             </p>
           </div>
         </div>
@@ -54,6 +54,7 @@
 
 <script>
 import sourceData from '@/data.json';
+import AppDate from '@/components/AppDate.vue';
 
 export default {
   props: {
@@ -77,6 +78,10 @@ export default {
     userById (userId){
       return this.users.find(p => p.id === userId);
     },
+  },
+
+  components: {
+    AppDate,
   },
 }
 </script>

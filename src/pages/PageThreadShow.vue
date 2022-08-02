@@ -36,7 +36,7 @@ export default {
         thread => thread.id === this.id);
     },
     threadPosts() {
-      return this.posts.find(
+      return this.posts.filter(
         post => post.threadId === this.id);
     },
   },
@@ -49,15 +49,11 @@ export default {
   methods: {
     addPost(eventData){        
       const post ={
-        // id: postId,
-        // text: this.newPosText,
-        // publishedAt: Math.floor(Date.now()/1000),
         ...eventData.post,
-        threadId: '',
+        threadId: this.id,
       };
       this.posts.push(post);
       this.thread.posts.push(post.id);
-      //console log communicating between components
     },        
   },
 }

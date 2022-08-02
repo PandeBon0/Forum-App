@@ -1,30 +1,35 @@
 <template>
-    <div title="hummanFriendlyDate(post.publishedAt)">
-                      {{diffForHumans(post.publishedAt)}}
-                  </div>
+  <span title="hummanFriendlyDate()">
+    {{ diffForHumans() }}
+  </span>
 </template>
 
 <script>
-import dayjs from 'dayjs'
-import relativeTime from 'days/plugin/relativeTime'
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedDate from 'dayjs/plugin/localizedFormat';
+
 dayjs.extend(relativeTime)
-dayjs.extend(localizedZone)
-    export default {
-        methods: {
-        postById(postId) {
-            return this.posts.find(p => p.id === postId);
-        },
-        userById(userId) {
-            return this.users.find(p => p.id === userId);
-        },
-        diffForHumans(timeStamp){
-            return dayjs.unix(timeStamp).fromNow()
-        }
-    },
-        
+dayjs.extend(localizedDate)
+
+export default {
+  props: {
+    timeStamp: {
+      required: true,
+      type: Number,
     }
+  },
+
+  methods: {
+    diffForHumans() {
+      return dayjs.unix(this.timeStamp).fromNow();
+    },
+    humanFriendlyDate(){
+      return dayjs.unix(this.timeStamp).format('llll')
+    },
+  },
+}
 </script>
 
 <style  scoped>
-
 </style>
