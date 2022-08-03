@@ -1,5 +1,5 @@
 <template>
-  <div class="col-full">
+  <div class="col-full forum-list">
     <div class="thread-list">
       <h2 class="list-title">
         Threads

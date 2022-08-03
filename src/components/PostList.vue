@@ -11,15 +11,18 @@
           class="user-name">
           {{userById(post.userId).name}}
         </a>
+
         <a href="#">
           <img class="avatar-large" 
             :src="userById(post.userId).avatar" 
             alt="">
         </a>
+
         <p class="desktop-only text-small">
           107 posts
         </p>
       </div>
+
       <div class="post-content">
         <div>
           <p>
@@ -27,7 +30,11 @@
           </p>
         </div>
       </div>
-      <div class="post-date text-faded" :title="humanFriendlyDate(post.publishedAt)">
+
+      <div
+        class="post-date text-faded"
+        :title="humanFriendlyDate(post.publishedAt)"
+      >
         {{ diffForHumans(post.publishedAt) }}
         <AppDate :timestamp="post.publishedAt"/>
       </div>
@@ -55,7 +62,15 @@ export default {
   methods: {
     userById(userId) {
       return this.users.find(p => p.id === userId);
-    },   
+    },
+    
+    humanFriendlyDate(date) {
+      return date
+    },
+    
+    diffForHumans(date) {
+      return date
+    },
   },
 }
 </script>                                                                                                                                                                                                           

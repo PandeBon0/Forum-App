@@ -1,7 +1,7 @@
 <template>
   <div class="col-large push-top">
     <h1>
-      {{threads.title}}
+      {{thread.title}}
     </h1>
     <post-list :posts="threadPosts"/> 
     <post-editor @save="addPost"/>
@@ -31,10 +31,18 @@ export default {
   },
     
   computed: {
+    /**
+     * Esta funcion, filtra en el arreglo de threads,
+     * y retorna el thread con el id que se pasa en la URL
+     */
     thread() {
       return this.threads.find(
         thread => thread.id === this.id);
     },
+    /**
+     * Filtra en el arreglo de posts y busca los items
+     * cuyo threadId es igual al thread actual.
+     */
     threadPosts() {
       return this.posts.filter(
         post => post.threadId === this.id);
