@@ -47,8 +47,8 @@ export default {
   },
     
   methods: {
-    addPost(eventData){        
-      const post ={
+    addPost(eventData) {        
+      const post = {
         ...eventData.post,
         threadId: this.id,
       };

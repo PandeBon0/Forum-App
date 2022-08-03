@@ -13,10 +13,11 @@ dayjs.extend(relativeTime)
 dayjs.extend(localizedDate)
 
 export default {
+  name:'AppDate',
   props: {
     timeStamp: {
-      required: true,
-      type: Number,
+      //required: true,
+      type: String,
     }
   },
 
@@ -25,7 +26,7 @@ export default {
       return dayjs.unix(this.timeStamp).fromNow();
     },
     humanFriendlyDate(){
-      return dayjs.unix(this.timeStamp).format('llll')
+      return dayjs.unix(this.timeStamp).format('llll');
     },
   },
 }

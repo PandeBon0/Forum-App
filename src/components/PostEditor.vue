@@ -1,14 +1,16 @@
 <template>
   <div class="col-full">
     <form @submit.prevent="save">
-      <textarea 
-        v-model="text" 
-        name="" 
-        id="" 
-        cols="30" 
-        rows="10"
-        class="form-input"  
-      />
+      <div class="form-group">
+        <textarea 
+          v-model="text" 
+          name="" 
+          id="" 
+          cols="30" 
+          rows="10"
+          class="form-input"  
+        />
+      </div>
       <div class="form-actions">
         <button class="btn-blue">Submit post</button>
       </div> 
@@ -32,7 +34,7 @@ export default {
         id: postId,
         text: this.text,
         publishedAt: Math.floor(Date.now() / 1000),
-        userId: 'jUjmgCurRRdzayqbRMO7aTG9X1G2'
+        userId: 'jUjmgCurRRdzayqbRMO7aTG9X1G2',
       };
       this.$emit('save', { post });
       this.text = '';

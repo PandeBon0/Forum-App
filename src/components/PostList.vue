@@ -13,7 +13,7 @@
         </a>
         <a href="#">
           <img class="avatar-large" 
-            src="userById(post.userId).avatar" 
+            :src="userById(post.userId).avatar" 
             alt="">
         </a>
         <p class="desktop-only text-small">
@@ -23,7 +23,7 @@
       <div class="post-content">
         <div>
           <p>
-            {{postById(postId).text}}
+            {{post.text}}
           </p>
         </div>
       </div>
@@ -37,7 +37,6 @@
 
 <script>
 import sourceData from '@/data.json'; 
-import AppDate from '@/components/AppDate.vue';
 
 export default {
   data() {
@@ -54,16 +53,9 @@ export default {
   },
         
   methods: {
-    // postById(postId) {
-    //   return this.posts.find(p => p.id === postId);
-    // },
     userById(userId) {
       return this.users.find(p => p.id === userId);
     },   
-  },
-
-  components: {
-    AppDate,
   },
 }
 </script>                                                                                                                                                                                                           

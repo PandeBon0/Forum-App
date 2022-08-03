@@ -8,17 +8,17 @@ const routes = [
   {
     path: '/', 
     name: 'Home',
-    component: PageHome 
+    component: PageHome, 
   },
   {
     path: '/thread/:id', 
     name: 'ThreadShow',
     component: PageThreadShow,
     props: true,
-    beforeEnter: (to, from, next) => {
+    beforeEnter (to, from, next)  {
       const threadExists = sourceData.threads.find(thread => thread.id === to.params.id);
       if(threadExists){
-        next();
+        return next();
       }else{
         next({
           name: 'NotFound',
@@ -26,7 +26,7 @@ const routes = [
             pathMatch: to.path.substring(1).split('/'), 
           },
           query: to.query,
-          has: to.hash,
+          hash: to.hash,
         });
       }
     }, 
