@@ -1,17 +1,17 @@
 <template>
-  <PageThreadShow/>
-  <!--id="all"-->
+  <!-- <PageThreadShow/> -->
+  <!-- id="all" -->
   <ThreadList :threads="threads"/>
 </template>
 
 <script>
 import sourceData from '@/data.json';
-import PageThreadShow from '@/pages/PageThreadShow.vue';
+// import PageThreadShow from '@/pages/PageThreadShow.vue';
 import ThreadList from '@/components/ThreadList.vue';
 
 export default {
   components: {
-    PageThreadShow,
+    // PageThreadShow,
     ThreadList,
   },
   

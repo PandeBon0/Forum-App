@@ -27,9 +27,8 @@
           </p>
         </div>
       </div>
-      <div class="post-date text-faded" :title="humanFriendlyDate(post.publishedAt)">
-        {{ diffForHumans(post.publishedAt) }}
-        <AppDate :timestamp="post.publishedAt"/>
+      <div class="post-date text-faded">
+        <AppDate :timeStamp="post.publishedAt"/>
       </div>
     </div>
   </div>

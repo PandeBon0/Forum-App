@@ -1,5 +1,5 @@
 <template>
-  <span title="hummanFriendlyDate()">
+  <span :title="humanFriendlyDate()">
     {{ diffForHumans() }}
   </span>
 </template>
@@ -16,8 +16,8 @@ export default {
   name:'AppDate',
   props: {
     timeStamp: {
-      //required: true,
-      type: String,
+      required: true,
+      type: Number,
     }
   },
 

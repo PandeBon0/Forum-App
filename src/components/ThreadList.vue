@@ -1,5 +1,5 @@
 <template>
-  <div class="col-full">
+  <div class="col-full forum-list">
     <div class="thread-list">
       <h2 class="list-title">
         Threads
@@ -24,7 +24,7 @@
             <a href="#">
               {{userById(thread.userId).name}}
             </a>, 
-            <AppDate :timestamp="thread.publishedAt"/>
+            <AppDate :timeStamp="thread.publishedAt"/>
           </p>
         </div>
         <div class="activity">
@@ -43,7 +43,7 @@
               </a>
             </p>
             <p class="text-xsmall text-faded">
-              <AppDate :timestamp="thread.publishedAt"/>
+              <AppDate :timeStamp="thread.publishedAt"/>
             </p>
           </div>
         </div>

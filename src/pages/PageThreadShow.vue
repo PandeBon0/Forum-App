@@ -1,7 +1,7 @@
 <template>
   <div class="col-large push-top">
     <h1>
-      {{threads.title}}
+      {{thread.title}}
     </h1>
     <post-list :posts="threadPosts"/> 
     <post-editor @save="addPost"/>
