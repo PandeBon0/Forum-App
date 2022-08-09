@@ -3,12 +3,21 @@ import PageThreadShow from '@/pages/PageThreadShow';
 import {createRouter, createWebHistory} from 'vue-router';
 import PageNotFound from '@/pages/PageNotFound';
 import sourceData from '@/data.json';
+import PageForum from '@/pages/PageForum';
 
 const routes = [
   {
     path: '/', 
     name: 'Home',
     component: PageHome, 
+  },
+  //debemos crear una nueva ruta para cada uno de los componentes principales
+  //en este caso creamos una ruta para forum
+  {
+    path: '/forum/:id',
+    name: 'Forum',
+    component: PageForum,
+    props:true
   },
   {
     path: '/thread/:id', 
