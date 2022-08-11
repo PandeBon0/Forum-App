@@ -4,6 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import PageNotFound from '@/pages/PageNotFound';
 import sourceData from '@/data.json';
 import PageForum from '@/pages/PageForum';
+import PageCategorie from '@/pages/PageCategorie';
 
 const routes = [
   {
@@ -17,6 +18,12 @@ const routes = [
     path: '/forum/:id',
     name: 'Forum',
     component: PageForum,
+    props:true
+  },
+  {
+    path: '/categorie/:id',
+    name: 'Categorie',
+    component: PageCategorie,
     props:true
   },
   {

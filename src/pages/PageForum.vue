@@ -2,6 +2,8 @@
   <div class="col-full push-top">
     <div class="forum-header">
       <div class="forum-details">
+        <!--aqui es donde recibe la informacion de ForumList, los props de ese componente
+        el nombre y la descripcion son la info que comparte con el componente padre-->
         <h1>{{ forum.name }}</h1>
         <p class="text-lead">
           {{ forum.description }}
@@ -19,6 +21,8 @@
     <!--aqui se pasa al componente threads, la computed propertie threads, que es un requierimiento del componente
     porque el componente requiere una lista de trheads y esta computed propertie se usa para comunicar la informacion
     del componente hijo pageforum al componente padre threadlist, o al reves creo-->
+    <!--no son hijos ni padres, se llama el componente threadlist 
+    para mostrar los enlaces de cada lista de hilos, eso es todo-->
     <ThreadList :threads="threads"/>
   </div>
 </template>
@@ -35,6 +39,7 @@ import sourceData from '@/data.json';
         type: String,
       },
     },
+    //y esos mismos props que recibe de ForumList los pasa a ThreadList
     computed: {
       //que hace esta funcion, encuentra en source data el foro con el id especificado en la url
         forum () {
