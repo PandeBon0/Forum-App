@@ -1,6 +1,6 @@
 <template>
 
-  <div class="col-full">
+  <!-- <div class="col-full">
     <div class="forum-list" v-for="categorie in categories" :key="categorie.id">
 
       <h2 class="list-title" >
@@ -16,6 +16,8 @@
 
       <div class="forum-listing" v-for="forum in forums" :key="forum.id">
         <div class="forum-details">
+
+
           <router-link :to="{
             name: 'Forum',
             params: {
@@ -52,18 +54,29 @@
             <p class="text-xsmall">By <a href="profile.html">Rolf Haug</a>, a month ago</p>
           </div>
         </div> 
+
+
       </div>
 
     </div>
 
 
 
-  </div>
+  </div> -->
+  <ForumList v-for="categorie in categories"
+    :key="categorie.id"
+    :forums="getForumsForCategorie(categorie)"
+  />
+
+
+
+
 
 </template>
 
 <script>
 import sourceData from '@/data.json';
+import ForumList from '@/components/ForumList.vue';
 
 export default {
     data() {
@@ -83,11 +96,15 @@ export default {
     },
   },
   methods: {
-    lastThreadElement (){
-      return this.threads[this.threads.length - 1];
-    },      
+    // lastThreadElement (){
+    //   return this.threads[this.threads.length - 1];
+    // },      
+    getForumsForCategorie(categorie){
+      return sourceData.forums.filter
+    }
     
   },
+  components: { ForumList },
 
 }
 </script>
