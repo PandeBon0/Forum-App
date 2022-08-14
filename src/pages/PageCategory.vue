@@ -11,18 +11,18 @@ import sourceData from '@/data.json';
 
 export default {
     components: { ForumList },
-  data() {
-    return {
-      forums: sourceData.forums,
-    }; 
-  },
+  // data() {
+  //   return {
+  //     forums: sourceData.forums,
+  //   }; 
+  // },
 
-    // props: {
-    //   id: {
-    //     required: true,
-    //     type: String,
-    //   },
-    // },
+  props: {
+   id: {
+       required: true,
+       type: String,
+     },
+   },
     // computed: {
     //     forum () {
     //       return sourceData.forums.find(forum => forum.id === this.id)

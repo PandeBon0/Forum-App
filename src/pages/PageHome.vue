@@ -1,20 +1,20 @@
 <template>
   <!-- <PageThreadShow/> -->
   <!-- id="all" -->
-  <CategorieList :categories="categories" :forums="forums"/>
+  <CategoryList :categories="categories" />
 </template>
 
 <script>
 import sourceData from '@/data.json';
 // import PageThreadShow from '@/pages/PageThreadShow.vue';
 //import ForumList from '@/components/ForumList.vue';
-import CategorieList from '@/components/CategorieList.vue';
+import CategoryList from '@/components/CategoryList.vue';
 
 export default {
   components: {
     // PageThreadShow,
     //ForumList,
-    CategorieList
+    CategoryList
 },
   
   data() {

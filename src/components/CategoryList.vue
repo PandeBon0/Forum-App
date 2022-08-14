@@ -1,16 +1,16 @@
 <template>
 
   <!-- <div class="col-full">
-    <div class="forum-list" v-for="categorie in categories" :key="categorie.id">
+    <div class="forum-list" v-for="category in categories" :key="category.id">
 
       <h2 class="list-title" >
         <router-link :to="{
-            name: 'Categorie',
+            name: 'Category',
             params: {
-              id: categorie.id
+              id: category.id
             },
-          }" class="text-xlarge" href="categorie.html">
-            {{ categorie.name }}
+          }" class="text-xlarge" href="category.html">
+            {{ category.name }}
           </router-link>
       </h2>
 
@@ -23,7 +23,7 @@
             params: {
               id: forum.id
             },
-          }" class="text-xlarge" href="categorie.html">
+          }" class="text-xlarge" href="category.html">
             {{ forum.name }}
           </router-link>
           <p>
@@ -63,14 +63,13 @@
 
 
   </div> -->
-  <ForumList v-for="categorie in categories"
-    :key="categorie.id"
-    :forums="getForumsForCategorie(categorie)"
+  
+  
+  <ForumList v-for="category in categories"
+    :key="category.id"
+    :forums="getForumsForCategory(category)"
+    :category-name="category.name"
   />
-
-
-
-
 
 </template>
 
@@ -99,8 +98,8 @@ export default {
     // lastThreadElement (){
     //   return this.threads[this.threads.length - 1];
     // },      
-    getForumsForCategorie(categorie){
-      return sourceData.forums.filter
+    getForumsForCategory(category){
+      return sourceData.forums.filter(forum => forum.categoryId === category.id)
     }
     
   },
