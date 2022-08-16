@@ -68,19 +68,20 @@
   <ForumList v-for="category in categories"
     :key="category.id"
     :forums="getForumsForCategory(category)"
-    :category-name="category.name"
+    :title="category.name"
+    :category-id="category.id"
   />
 
 </template>
 
 <script>
-import sourceData from '@/data.json';
+ 
 import ForumList from '@/components/ForumList.vue';
 
 export default {
     data() {
     return {
-      threads: sourceData.threads,
+      threads:  this.$store.state.threads,
 
     };
   },
@@ -89,19 +90,11 @@ export default {
       required: true,
       type: Array,
     },
-    forums: {
-      required: true,
-      type: Array,
-    },
   },
-  methods: {
-    // lastThreadElement (){
-    //   return this.threads[this.threads.length - 1];
-    // },      
+  methods: {     
     getForumsForCategory(category){
-      return sourceData.forums.filter(forum => forum.categoryId === category.id)
+      return  this.$store.state.forums.filter(forum => forum.categoryId === category.id)
     }
-    
   },
   components: { ForumList },
 

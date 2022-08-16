@@ -38,20 +38,20 @@
 </template>
 
 <script>
-import sourceData from '@/data.json'; 
+ 
 
 export default {
-  data() {
-    return {
-      users: sourceData.users,
-    };
-  },
-
   props:{
     posts:{
       required: true,
       type: Array,
     },
+  },
+  computed: {
+    users () {
+      return this.$store.state.users;
+    }
+    
   },
         
   methods: {

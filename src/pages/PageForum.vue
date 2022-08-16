@@ -29,12 +29,12 @@
 
 <script>
 import ThreadList from '@/components/ThreadList.vue';
-import sourceData from '@/data.json';
+ 
 
   export default {
     components: { ThreadList },
     props: {
-      id: {
+      id: { 
         required: true,
         type: String,
       },
@@ -43,14 +43,14 @@ import sourceData from '@/data.json';
     computed: {
       //que hace esta funcion, encuentra en source data el foro con el id especificado en la url
         forum () {
-          return sourceData.forums.find(forum => forum.id === this.id)
+          return  this.$store.state.forums.find(forum => forum.id === this.id)
         },
         //devuelve los hilos pertenecientes al foro especificado
         //hilos cuyo FORUM ID sea igual al especificado en la url, this.id
         //si uno tiene dudas sobre como hacer un filtro, hay que ver las propiedades de los elementos sobre
         //los que se quiere filtrar y sobre los que se va a comparar
         threads () {
-          return sourceData.threads.filter(thread => thread.forumId === this.id)
+          return  this.$store.state.threads.filter(thread => thread.forumId === this.id)
         } 
     }
 }

@@ -1,10 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/router';
-
+import store from '@/store';
 
 const forumApp = createApp(App);
 forumApp.use(router);
+forumApp.use(store);
 
 //se usa para registrar todos los componentes de cierta categoria globalmente
 //en este caso todos los que empiezan por App...

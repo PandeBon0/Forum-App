@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import sourceData from '@/data.json';
+ 
 import PostEditor from '@/components/PostEditor.vue';
 import PostList from '@/components/PostList.vue';
 
@@ -22,15 +22,14 @@ export default {
       type: String,
     },
   },
-    
-  data() {
-    return {
-      threads: sourceData.threads,
-      posts: sourceData.posts, 
-    };
-  },
-    
+  
   computed: {
+    threads() {
+      return this.$store.state.threads;
+    },
+    posts() {
+      return this.$store.state.posts; 
+    },
     /**
      * Esta funcion, filtra en el arreglo de threads,
      * y retorna el thread con el id que se pasa en la URL
@@ -60,8 +59,7 @@ export default {
         ...eventData.post,
         threadId: this.id,
       };
-      this.posts.push(post);
-      this.thread.posts.push(post.id);
+      this.$store.dispatch('createPost', post);
     },        
   },
 }
