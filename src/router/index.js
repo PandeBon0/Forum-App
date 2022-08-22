@@ -1,16 +1,30 @@
 import PageHome from '@/pages/PageHome';
 import PageThreadShow from '@/pages/PageThreadShow';
+import PageThreadCreate from '@/pages/PageThreadCreate';
 import {createRouter, createWebHistory} from 'vue-router';
 import PageNotFound from '@/pages/PageNotFound';
 import sourceData from '@/data.json';
 import PageForum from '@/pages/PageForum';
 import PageCategory from '@/pages/PageCategory';
+import PageProfile from '@/pages/PageProfile';
 
 const routes = [
   {
     path: '/', 
     name: 'Home',
     component: PageHome, 
+  },
+  {
+    path: '/me', 
+    name: 'Profile',
+    component: PageProfile, 
+    props: {edit: true},
+    meta: {toTop: true, smoothScroll: true},
+  },
+  {
+    path: '/me/edit', 
+    name: 'ProfileEdit',
+    component: PageProfile, 
   },
   //debemos crear una nueva ruta para cada uno de los componentes principales
   //en este caso creamos una ruta para forum
@@ -25,6 +39,12 @@ const routes = [
     name: 'Category',
     component: PageCategory,
     props:true
+  },
+  {
+    path: '/form/:forumId/thread/create',
+    name: 'ThreadCreate',
+    component: PageThreadCreate,
+    props:true,
   },
   {
     path: '/thread/:id', 
@@ -57,4 +77,10 @@ const routes = [
 export default createRouter({
   history: createWebHistory(),
   routes, 
+  scrollBehavior(to) {
+    const scroll = {}
+    if (to.meta.toTop) scroll.top = 0
+    if (to.meta.smoothScroll) scroll.behavior = 'smooth' 
+    return scroll
+  },
 })

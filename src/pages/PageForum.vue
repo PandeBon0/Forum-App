@@ -9,12 +9,12 @@
           {{ forum.description }}
         </p>
       </div>
-      <a 
-        href="new-thread.html" 
+      <router-link  
+        :to="{name: 'ThreadCreate', params: {forumId: forum.id}}" 
         class="btn-green btn-small"
       >
         Start a thread
-      </a>
+      </router-link>
     </div>
   </div>
   <div class="col-full push-top">
