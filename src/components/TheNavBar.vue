@@ -29,7 +29,7 @@
               {{authUser.name}}
               <img 
                 class="icon-profile" 
-                src="assets/img/svg/arrow-profile.svg" 
+                src="@/assets/svg/arrow-profile.svg" 
                 alt=""
               >
             </span>

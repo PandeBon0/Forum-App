@@ -1,6 +1,7 @@
 import PageHome from '@/pages/PageHome';
 import PageThreadShow from '@/pages/PageThreadShow';
 import PageThreadCreate from '@/pages/PageThreadCreate';
+import PageThreadEdit from '@/pages/PageThreadEdit';
 import {createRouter, createWebHistory} from 'vue-router';
 import PageNotFound from '@/pages/PageNotFound';
 import sourceData from '@/data.json';
@@ -41,9 +42,15 @@ const routes = [
     props:true
   },
   {
-    path: '/form/:forumId/thread/create',
+    path: '/forum/:forumId/thread/create',
     name: 'ThreadCreate',
     component: PageThreadCreate,
+    props:true,
+  },
+  {
+    path: '/thread/:threadId/edit',
+    name: 'ThreadEdit',
+    component: PageThreadEdit,
     props:true,
   },
   {
