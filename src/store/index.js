@@ -28,6 +28,21 @@ export default createStore({
         },
       };
     },
+    thread: state => {
+      return (id) => {
+        const thread = findById(state.threads, id)
+        return {
+          ...thread,
+          get author () {
+            return findById(state.users, thread.userId)
+          },
+          get repliesCount (){
+            return thread.posts.length - 1;
+          },
+          get contributorsCount () {},
+        }
+      }
+    },
   },
   actions: {
     createPost ({commit, state}, post) {

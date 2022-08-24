@@ -1,3 +1,4 @@
+
 <template>
   <div class="col-large push-top">
     <h1>
@@ -28,13 +29,32 @@
         </button>
       </router-link> -->
     </h1>
+    <p>
+      <p>
+        <!-- By 
+        <a 
+          href="#" 
+          class="link-unstyled"
+        >
+          Robin
+        </a>
+        , 2 hours ago.
+        <span 
+          style="float:right; 
+          margin-top: 2px;" 
+          class="hide-mobile text-faded text-small"
+        >
+          3 replies by 3 contributors
+        </span> -->
+      </p>
+    </p>
     <post-list :posts="threadPosts"/> 
     <post-editor @save="addPost"/>
   </div>
 </template>
 
 <script>
- 
+/* eslint-disable */
 import PostEditor from '@/components/PostEditor.vue';
 import PostList from '@/components/PostList.vue';
 
@@ -60,8 +80,7 @@ export default {
      * y retorna el thread con el id que se pasa en la URL
      */
     thread() {
-      return this.threads.find(
-        thread => thread.id === this.id);
+      return this.$store.getters.thread(this.id)
     },
     /**
      * Filtra en el arreglo de posts y busca los items
