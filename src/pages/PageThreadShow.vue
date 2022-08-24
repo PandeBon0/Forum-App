@@ -2,6 +2,31 @@
   <div class="col-large push-top">
     <h1>
       {{thread.title}}
+      <!-- <router-link 
+        :to="{
+          name: 'ThreadEdit', 
+          id: this.id
+        }" 
+        class="btn-green btn-small"
+       
+      >
+        Edit Thread
+      </router-link> -->
+      <!-- <router-link 
+        :to="{
+          name: 'ThreadEdit',
+          params: { id: this.id }
+        }" 
+        custom="" 
+        v-slot="{ navigate }"
+      >
+        <button 
+          @click="navigate" 
+          class="btn-green btn-small"
+        >
+          Edit Thread
+        </button>
+      </router-link> -->
     </h1>
     <post-list :posts="threadPosts"/> 
     <post-editor @save="addPost"/>

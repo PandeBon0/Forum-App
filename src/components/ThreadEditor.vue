@@ -37,7 +37,7 @@
         type="submit" 
         name="Publish"
       >
-        Publish 
+        {{existing ? 'Update' : 'Publish'}} 
       </button>
     </div>
   </form>
@@ -62,6 +62,11 @@ export default {
     save () {
       this.$emit('save', {...this.form})
     },
+  },
+  computed: {
+    existing() {
+      return !!this.title
+    }
   },
 
 }

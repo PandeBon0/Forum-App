@@ -38,11 +38,10 @@ export default {
         title,
         text,
       });
-      this.$router.push({name: 'ThreadShow', params: {id: thread.id}})
+      this.$router.push({name: 'ThreadShow', params: {id: thread.id}});
     },
-    
     cancel(){
-      console.log('Cancelar');
+      this.$router.push({name: 'ThreadShow', params: {id: this.id}});
     }
   },
 }

@@ -7,7 +7,7 @@
   </div>
   <ThreadEditor 
     @save="save" 
-    @cancel="cancel" 
+    @cancel="cancel()" 
   />
 </template>
 
@@ -36,6 +36,10 @@ export default {
       });
       this.$router.push({name: 'ThreadShow', params: {id: thread.id}})
     },
+    //
+    cancel(){
+      this.$router.push({name: 'ThreadShow', params: {id: this.thread.id}});
+    }
   },
 }
 </script>
