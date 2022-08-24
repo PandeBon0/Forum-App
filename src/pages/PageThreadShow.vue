@@ -31,21 +31,21 @@
     </h1>
     <p>
       <p>
-        <!-- By 
+        By 
         <a 
           href="#" 
           class="link-unstyled"
         >
-          Robin
+          {{thread.author.name}}
         </a>
-        , 2 hours ago.
+        , <AppDate :timeStamp="thread.publishedAt" />.
         <span 
           style="float:right; 
           margin-top: 2px;" 
           class="hide-mobile text-faded text-small"
         >
-          3 replies by 3 contributors
-        </span> -->
+          {{thread.repliesCount}} replies by {{thread.contributorsCount}} contributors
+        </span>
       </p>
     </p>
     <post-list :posts="threadPosts"/> 

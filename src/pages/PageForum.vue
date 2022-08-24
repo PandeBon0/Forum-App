@@ -50,7 +50,7 @@ import ThreadList from '@/components/ThreadList.vue';
         //si uno tiene dudas sobre como hacer un filtro, hay que ver las propiedades de los elementos sobre
         //los que se quiere filtrar y sobre los que se va a comparar
         threads () {
-          return  this.$store.state.threads.filter(thread => thread.forumId === this.id)
+          return  this.forum.threads.map(threadId => this.$store.getters.thread(threadId))
         } 
     }
 }

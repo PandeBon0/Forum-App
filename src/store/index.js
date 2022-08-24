@@ -9,24 +9,29 @@ export default createStore({
     authId: 'VXjpr2WHa8Ux4Bnggym8QFLdv5C3',
   },
   getters: {
-    authUser: state => {
-      const user = findById(state.users, state.authId);
-      if (!user) return null;
-      return {
-        ...user, 
-        get posts () {
-          return state.posts.filter(post => post.userId === user.id);
-        },
-        get postsCount () {
-          return this.posts.length;
-        },
-        get threads () {
-          return state.posts.filter(thread => thread.userId === user.id); 
-        },
-        get threadsCount () {
-          return this.threads.length;
-        },
-      };
+    authUser: (state, getters) => {
+      return getters.user(state.authId)
+    },
+    user: state => {
+      return (id) => {
+        const user = findById(state.users, id);
+        if (!user) return null;
+        return {
+          ...user, 
+          get posts () {
+            return state.posts.filter(post => post.userId === user.id);
+          },
+          get postsCount () {
+            return this.posts.length;
+          },
+          get threads () {
+            return state.posts.filter(thread => thread.userId === user.id); 
+          },
+          get threadsCount () {
+            return this.threads.length;
+          },
+        };
+      }
     },
     thread: state => {
       return (id) => {
@@ -39,7 +44,9 @@ export default createStore({
           get repliesCount (){
             return thread.posts.length - 1;
           },
-          get contributorsCount () {},
+          get contributorsCount () {
+            return thread.contributors.length
+          },
         }
       }
     },
@@ -51,6 +58,7 @@ export default createStore({
       post.publishedAt = Math.floor(Date.now() / 1000);
       commit('setPost', {post}); //set the post
       commit('appendPostToThread', {childId: post.id, parentId: post.threadId}); // append the post to the thread
+      commit('appendContributorToThread', {childId: state.authId, parentId: post.threadId});
     },
     async createThread ({commit, state, dispatch}, {text, title, forumId}){
       const id = 'qqqq' + Math.random();
@@ -90,7 +98,7 @@ export default createStore({
     appendPostToThread: makeAppendChildToParentMutation({parent: 'threads', child: 'posts'}),
     appendThreadToForum: makeAppendChildToParentMutation({parent: 'forums', child: 'threads'}),
     appendThreadToUser: makeAppendChildToParentMutation({parent: 'users', child: 'threads'}),
-
+    appendContributorToThread: makeAppendChildToParentMutation({parent: 'threads', child: 'contributors'}),
   },
 })
 
@@ -98,6 +106,9 @@ function makeAppendChildToParentMutation ({parent, child}) {
   return (state, { childId, parentId }) => {
     const resource = findById(state[parent], parentId);
     parent[child] = resource[child] || [];
-    parent[child].push(childId);
+    if (!resource[child].includes(childId)){
+      parent[child].push(childId);
+    }
+
   }
 }
