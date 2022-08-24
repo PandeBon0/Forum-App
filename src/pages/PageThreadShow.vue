@@ -1,22 +1,45 @@
-
 <template>
   <div class="col-large push-top">
     <h1>
       {{thread.title}}
+      
+      
       <!-- <router-link 
         :to="{
           name: 'ThreadEdit', 
-          id: this.id
+          params: {id: this.id}
         }" 
-        class="btn-green btn-small"
-       
-      >
+      > 
+       <button class="btn-green btn-small">
         Edit Thread
+      
+      </button> 
       </router-link> -->
+
+      <router-link 
+        :to="{
+          name: 'ThreadEdit', 
+          params: {threadId: this.id}
+        }" 
+        custom v-slot="{ navigate }">
+        <button 
+          class="btn-green btn-small"
+          @click="navigate" 
+          @keypress.enter="navigate" 
+          role="link"
+        >
+          Edit Thread
+        </button>
+      </router-link>
+     
+        
+
+
+
       <!-- <router-link 
         :to="{
           name: 'ThreadEdit',
-          params: { id: this.id }
+          params: { id }
         }" 
         custom="" 
         v-slot="{ navigate }"
@@ -29,37 +52,22 @@
         </button>
       </router-link> -->
     </h1>
-    <p>
-      <p>
-        By 
-        <a 
-          href="#" 
-          class="link-unstyled"
-        >
-          {{thread.author.name}}
-        </a>
-        , <AppDate :timeStamp="thread.publishedAt" />.
-        <span 
-          style="float:right; 
-          margin-top: 2px;" 
-          class="hide-mobile text-faded text-small"
-        >
-          {{thread.repliesCount}} replies by {{thread.contributorsCount}} contributors
-        </span>
-      </p>
-    </p>
+    <!-- c -->
     <post-list :posts="threadPosts"/> 
     <post-editor @save="addPost"/>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
+
 import PostEditor from '@/components/PostEditor.vue';
 import PostList from '@/components/PostList.vue';
 
 export default {
   name: "ThreadShow",
+  // data () {
+  //   threadId: this.id
+  // },
   
   props: {
     id: {
@@ -80,7 +88,7 @@ export default {
      * y retorna el thread con el id que se pasa en la URL
      */
     thread() {
-      return this.$store.getters.thread(this.id)
+      return this.$store.getters.thread(this.id);
     },
     /**
      * Filtra en el arreglo de posts y busca los items
